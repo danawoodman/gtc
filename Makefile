@@ -8,7 +8,6 @@ install:
 	@echo "📦 Installing gtc"
 	@go install ./cmd/gtc
 
-
 .PHONY: watch-install
 watch-install:
 	@cng -ik './cmd/**/*.go' -- make build install
