@@ -12,8 +12,12 @@ gtc uses your system's `go` command to run tests, so it should work with any ver
 
 ## Installation
 
+Download a [release](https://github.com/danawoodman/gtc/releases) for your platform and add it to your path.
+
+Or just install with Golang:
+
 ```bash
-go install github.com/danawoodman/gtc
+go install github.com/danawoodman/gtc@latest
 ```
 
 ## Usage
