@@ -1,7 +1,7 @@
 .PHONY: build
 build:
 	@echo "🚀 Building gtc"
-	@go build -o gtc ./cmd/gtc
+	@go build -o ./dist/gtc ./cmd/gtc
 
 .PHONY: install
 install:

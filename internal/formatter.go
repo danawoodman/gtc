@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"fmt"
 	"regexp"
 
 	"github.com/fatih/color"
@@ -33,29 +32,39 @@ func (f formatter) Format(line string) string {
 	// highlight file/line numbers, except for error messages (as they're already highlighted)
 	errorTraceLine, _ := regexp.MatchString(`^\s*Error Trace:`, line)
 	errorLine, _ := regexp.MatchString(`^\s*Error:`, line)
-	fmt.Println(errorTraceLine, errorLine)
 	if !errorTraceLine && !errorLine {
 		line = replaceFragment(`[a-zA-Z0-9_-]+\.go:\d+`, line, boldCyan.SprintfFunc())
 	}
 
 	linePatterns := map[string]Colorizer{
+		//-------------------------------------------------------
+		// Successful outputs
+		//-------------------------------------------------------
 		`^\s*--- PASS:`:     color.GreenString,
 		`^PASS$`:            color.GreenString,
 		`^\s*--- Expected$`: color.GreenString,
 		`^\s*expected:`:     color.GreenString,
 		`^ok  `:             color.GreenString,
-
-		`^\s*--- FAIL:`:    color.RedString,
-		`^FAIL`:            color.RedString,
-		`^\s*Error Trace:`: color.RedString,
-		`^\s*Error:`:       color.RedString,
-		`\+\+\+ Actual$`:   color.RedString,
-		`^\s*actual  :`:    color.RedString,
-
+		//-------------------------------------------------------
+		// Failure outputs
+		//-------------------------------------------------------
+		`^\s*--- FAIL:`:      color.RedString,
+		`^FAIL`:              color.RedString,
+		`^\s*Error Trace:`:   color.RedString,
+		`^\s*Error:`:         color.RedString,
+		`^\s*\+\+\+ Actual$`: color.RedString,
+		`^\s*actual  :`:      color.RedString,
+		//-------------------------------------------------------
+		// Highlight outputs
+		//-------------------------------------------------------
 		`^\s*Test:   `: color.CyanString,
-
+		//-------------------------------------------------------
+		// Skipped test output
+		//-------------------------------------------------------
 		`^\s*--- SKIP:`: color.YellowString,
-
+		//-------------------------------------------------------
+		// Muted outputs
+		//-------------------------------------------------------
 		`^=== RUN`:   color.BlackString,
 		`^=== PAUSE`: color.BlackString,
 		`^=== CONT`:  color.BlackString,

@@ -39,6 +39,11 @@ func TestPackage(t *testing.T) {
 			"ok      github.com/foo/bar/baz 0.123s",
 			color.GreenString("ok      github.com/foo/bar/baz 0.123s"),
 		},
+		{
+			"matches error diff expected label",
+			"    --- Expected",
+			color.GreenString("    --- Expected"),
+		},
 
 		//------------------------------------------------
 		// Warning output
@@ -108,6 +113,11 @@ func TestPackage(t *testing.T) {
 			"    actual  : true",
 			color.RedString("    actual  : true"),
 		},
+		{
+			"matches error diff actual label",
+			"    +++ Actual",
+			color.RedString("    +++ Actual"),
+		},
 
 		//------------------------------------------------
 		// Highlighted output
@@ -167,6 +177,16 @@ func TestPackage(t *testing.T) {
 			"doesn't match invalid test prefix",
 			"just a Test:   false",
 			"just a Test:   false",
+		},
+		{
+			"doesn't match invalid expected label",
+			"hello! --- Expected",
+			"hello! --- Expected",
+		},
+		{
+			"doesn't match invalid actual label",
+			"hello! +++ Actual",
+			"hello! +++ Actual",
 		},
 	}
 
