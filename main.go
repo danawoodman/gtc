@@ -1,4 +1,4 @@
-package main
+package gtc
 
 import (
 	"fmt"

@@ -1,16 +1,16 @@
 .PHONY: build
 build:
 	@echo "🚀 Building gtc"
-	@go build -o ./dist/gtc ./cmd/gtc
+	@go build -o ./dist/gtc .
 
 .PHONY: install
 install:
 	@echo "📦 Installing gtc"
-	@go install ./cmd/gtc
+	@go install .
 
 .PHONY: watch-install
 watch-install:
-	@cng -ik './cmd/**/*.go' -- make build install
+	@cng -ik '*.go' -- make build install
 
 .PHONY: test
 test:

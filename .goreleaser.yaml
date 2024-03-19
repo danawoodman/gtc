@@ -8,7 +8,7 @@ before:
     - go mod tidy
 
 builds:
-  - main: ./cmd/gtc/
+  - main: .
     env:
       - CGO_ENABLED=0
     goos:
