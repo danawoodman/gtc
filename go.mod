@@ -1,6 +1,6 @@
 module github.com/danawoodman/gtc
 
-go 1.22.0
+go 1.22.2
 
 require (
 	github.com/fatih/color v1.16.0
